@@ -125,7 +125,7 @@ public with sharing class SchemaCtrlMdt {
 
         Set<Id> ids_level = new Set<Id>();
          
-        /* debut */
+        
         String edgefiel = objsetting.edgefields__c;	
         List<String> fieldedgelist = edgefiel.split(',');
         String query1 = 'SELECT ';

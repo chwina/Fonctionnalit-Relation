@@ -55,7 +55,7 @@ public with sharing class ParamClass {
             Schema.DescribeSObjectResult objResult = o.getDescribe();
             String name = objResult.getName();
             if(!name.containsignorecase('history') && !name.containsignorecase('tag') && !name.containsignorecase('share') && !name.containsignorecase('feed') && !name.containsignorecase('ChangeEvent')){
-                objectList.put(objResult.getName(), objResult.getLabel());
+                objectList.put(objResult.getLabel(),objResult.getName());
             }
 
             
@@ -85,11 +85,11 @@ public with sharing class ParamClass {
         Schema.SObjectType convertType = Schema.getGlobalDescribe().get(objectName);
         Map<String, Schema.SobjectField> fmap = convertType.getDescribe().fields.getMap();
         for(String fieldName: fmap.keySet()){
-           // if(fmap.get(fieldName).getDescribe().getName().toLowerCase().right(3) ==  '__c'){
+          
                 System.debug('lookup'+fmap.get(fieldName).getDescribe().getLabel()+' '+ fmap.get(fieldName).getDescribe().getType());
-                fieldsList.put(fieldName, fmap.get(fieldName).getDescribe().getLabel());
+                fieldsList.put(fmap.get(fieldName).getDescribe().getLabel(),fmap.get(fieldName).getDescribe().getName());
                 
-           // }
+         
             
         }
         return fieldsList;

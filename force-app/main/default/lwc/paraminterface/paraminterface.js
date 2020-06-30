@@ -12,7 +12,7 @@ export default class Paraminterface extends LightningElement {
     
     @track multiple = true;
     @track backgroundfitvalue ;
-    @track shapevalue  ;
+    @track shapevalue ;
     @track curvevalue ;
     @track Objectvalue ;
     @track Relationvalue ;
@@ -132,7 +132,7 @@ export default class Paraminterface extends LightningElement {
                 .then(data => {
                     let fieoptions = [];
                     for(let key in data){
-                        fieoptions.push({label : data[key],value : data[key]});
+                        fieoptions.push({label : key,value : data[key]});
                     }
                      this.fieldsoptions = fieoptions;
                 })
@@ -187,7 +187,7 @@ export default class Paraminterface extends LightningElement {
                 .then(data => {
                     let fierelationoptions = [];
                     for(let key in data){
-                        fierelationoptions.push({label : data[key],value : data[key]});
+                        fierelationoptions.push({label : key,value : data[key]});
                     }
                      this.relationfieldsoptions = fierelationoptions;
                 })

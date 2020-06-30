@@ -70,9 +70,9 @@ public with sharing class ParamClassTest {
                System.debug('le nombre des fils de l\'objet account  ' + childobjectList.values().size());
                System.debug('le nombre des champs de l\'objet account ' + fieldsobjectList.values().size());
                System.debug('le nombre des champs lookup de l\'objet relation ' + fieldsReferenceobjectList.values().size());
-               System.assertEquals( objectList.values().size(),488);
+               System.assertEquals( objectList.values().size(),483);
                System.assertEquals(childobjectList.values().size(),62);
-               System.assertEquals(fieldsobjectList.values().size(), 7);
+               System.assertEquals(fieldsobjectList.values().size(), 66);
                System.assertEquals(fieldsReferenceobjectList.values().size(), 2);
         }
 }
