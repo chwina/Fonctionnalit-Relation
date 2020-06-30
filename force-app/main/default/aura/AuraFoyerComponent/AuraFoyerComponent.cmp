@@ -1,0 +1,7 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+
+   <aura:handler event="aura:locationChange" action="{!c.reload}"/>
+            
+          <c:finalfoyercomponent recordId="{!v.recordId}"  />
+         
+   </aura:component>		

@@ -1,0 +1,101 @@
+<template>
+      
+    <lightning-card >
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:timesheet" alternative-text="Event" size="small"></lightning-icon>
+            &nbsp;interface de parametrage
+        </h3>
+        <lightning-accordion allow-multiple-sections-open={multiple} active-section-name={activeSections}>
+            <lightning-accordion-section name="Node Proprieties" label="Node Proprieties">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+                        <lightning-input type="color" name="input-color" label="color" variant="label-stacked" value="#8DC141" onchange={nodecolorChange}></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+                        <lightning-combobox name="Background fit" label="Background fit" placeholder="Choose background"   options={backgroundfitoptions} onchange={handleChangebackgroundfit} ></lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+                        <lightning-combobox name="Shape" label="Shape" placeholder="Choose shape"   options={shapeoptions} onchange={handleChangeshape}></lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small" >
+                        <lightning-input type="number" name="witdh" label="witdh" onchange={nodewidthChange}></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small" >
+                        <lightning-input type="number" name="font" label="font size" onchange={nodefontsizeChange}></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small" >
+                        <lightning-input type="number" name="height" label="height" onchange={nodeheightChange}></lightning-input>
+                    </lightning-layout-item>
+                    </lightning-layout>
+            </lightning-accordion-section>
+        
+        <lightning-accordion-section label="Edge Proprieties">
+
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+           <lightning-input type="color" name="input-color" label="color" variant="label-stacked" value="#8DC141" onchange={edgecolorChange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+                    <lightning-combobox name="text-rotation" label="text-rotation" placeholder="Choose rotate"   options={textrotationoptions} onchange={handleChangetextrotate}></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small" >
+                    <lightning-input type="number" name="font" label="font size" onchange={edgefontsizeChange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+                    <lightning-combobox name="curve style" label="curve style" placeholder="curve style"   options={curveoptions} onchange={handleChangecurve}></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
+                    <lightning-input type="color" name="input-color" label="line color" variant="label-stacked" value="#8DC141" onchange={edgelinecolor}></lightning-input>
+                </lightning-layout-item>
+                
+                
+                </lightning-layout>
+        </lightning-accordion-section>
+            
+            <lightning-accordion-section label="Objects Properties">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                        <lightning-combobox name="Objects" label="Objects" placeholder="Choose Object"   options={Objectoptions} onchange={handleChangeObject} ></lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                        <lightning-combobox name="Relations" label="relations" placeholder="Choose Relation"   options={relationsoptions} onchange={handleChangeRelation} ></lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                        <lightning-combobox name="Parent relation" label="Parent relation" placeholder="Choose Parent Relation"   options={parentRelation} onchange={handleChangeparentrelation} ></lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+                        <lightning-combobox name="Lookup relation" label="Lookup relation" placeholder="Choose Lookup relation"   options={Referencerelation} onchange={handleChangelookuprelation} ></lightning-combobox>
+                    </lightning-layout-item>
+                   
+                </lightning-layout>
+            </lightning-accordion-section >
+            <lightning-accordion-section class="slds-grid slds-grid--align-space" name="Affichage" label="Affichage">
+                  <lightning-layout>
+                    <div class="slds-col--padded"></div>
+                    <div class="slds-col--padded"></div>
+                    <lightning-layout-item class="slds-col--padded" size="12" small-device-size="6" medium-device-size="4" large-device-size="4" padding="around-small">
+                        <lightning-dual-listbox name="fields" label="Select fields for Node" source-label="fields" selected-label="Selected fields" field-level-help="Select fields" options={fieldsoptions} onchange={handleChangefields}></lightning-dual-listbox>
+                    </lightning-layout-item>
+                    <div class="slds-col--padded"></div>
+                    <div class="slds-col--padded"></div>
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="4" padding="around-small">
+                        <lightning-dual-listbox name="relation lookup" label="Select fields for Edge" source-label="fields" selected-label="Selectd fields" field-level-help="Select Relation lookup" options={relationfieldsoptions} onchange={handleChangelookup}></lightning-dual-listbox>
+                    </lightning-layout-item>
+                  </lightning-layout>
+                  
+                    
+                 
+            </lightning-accordion-section>   
+        </lightning-accordion>     
+                <lightning-layout>
+                    <div class="slds-align_absolute-center">
+                        <lightning-button variant="brand" onclick={handleClick} name="Save" label="Save">
+                        </lightning-button>
+                    </div>
+                </lightning-layout>
+      </lightning-card>
+   
+     
+           
+    
+</template>
