@@ -57,7 +57,7 @@ export default class Finalfoyercomponent extends LightningElement {
                 curvestyle :  (this.foyers)[i].data2.curvestyle,
                 textrotation : (this.foyers)[i].data2.textrotation,
                 Fontsize  :  (this.foyers)[i].data2.Fontsize+'px',
-                label : 'est parent de'
+                label :  (this.foyers)[i].data2.edgelist
             },
             classes:'background'
              }) ;

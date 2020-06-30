@@ -11,12 +11,12 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 export default class Paraminterface extends LightningElement {
     
     @track multiple = true;
-    @track backgroundfitvalue = 'none';
-    @track shapevalue = 'rectangle';
-    @track curvevalue = 'bezier';
+    @track backgroundfitvalue ;
+    @track shapevalue  ;
+    @track curvevalue ;
     @track Objectvalue ;
-    @track Relationvalue = 'Relation';
-    @track textrotation = 'autorotate';
+    @track Relationvalue ;
+    @track textrotation ;
 
     @track nodecolor;
     @track nodefontsize;
@@ -209,7 +209,7 @@ export default class Paraminterface extends LightningElement {
                  }
      get shapeoptions() {
             return [
-                     { label: 'triangle', value: 'cover' },
+                     { label: 'triangle', value: 'triangle' },
                      { label: 'ellipse', value: 'ellipse' },
                      { label: 'rectangle', value: 'rectangle' },
                    ];
