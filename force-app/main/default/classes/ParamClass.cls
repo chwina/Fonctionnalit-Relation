@@ -85,11 +85,10 @@ public with sharing class ParamClass {
         Schema.SObjectType convertType = Schema.getGlobalDescribe().get(objectName);
         Map<String, Schema.SobjectField> fmap = convertType.getDescribe().fields.getMap();
         for(String fieldName: fmap.keySet()){
-            if(fmap.get(fieldName).getDescribe().getName().toLowerCase().right(3) ==  '__c'){
+
                 System.debug('lookup'+fmap.get(fieldName).getDescribe().getLabel()+' '+ fmap.get(fieldName).getDescribe().getType());
                 fieldsList.put(fieldName, fmap.get(fieldName).getDescribe().getLabel());
                 
-            }
             
         }
         return fieldsList;

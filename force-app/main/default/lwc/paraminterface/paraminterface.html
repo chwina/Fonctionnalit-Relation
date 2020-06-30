@@ -9,7 +9,7 @@
             <lightning-accordion-section name="Node Proprieties" label="Node Proprieties">
                 <lightning-layout multiple-rows>
                     <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
-                        <lightning-input type="color" name="input-color" label="color" variant="label-stacked" value="#8DC141" onchange={nodecolorChange}></lightning-input>
+                        <lightning-input type="color" name="input-color" label="Color" variant="label-stacked" value="#8DC141" onchange={nodecolorChange}></lightning-input>
                     </lightning-layout-item>
                     <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
                         <lightning-combobox name="Background fit" label="Background fit" placeholder="Choose background"   options={backgroundfitoptions} onchange={handleChangebackgroundfit} ></lightning-combobox>
@@ -18,13 +18,13 @@
                         <lightning-combobox name="Shape" label="Shape" placeholder="Choose shape"   options={shapeoptions} onchange={handleChangeshape}></lightning-combobox>
                     </lightning-layout-item>
                     <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small" >
-                        <lightning-input type="number" name="witdh" label="witdh" onchange={nodewidthChange}></lightning-input>
+                        <lightning-input type="number" name="witdh" label="Witdh" onchange={nodewidthChange}></lightning-input>
                     </lightning-layout-item>
                     <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small" >
-                        <lightning-input type="number" name="font" label="font size" onchange={nodefontsizeChange}></lightning-input>
+                        <lightning-input type="number" name="font" label="Font size" onchange={nodefontsizeChange}></lightning-input>
                     </lightning-layout-item>
                     <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small" >
-                        <lightning-input type="number" name="height" label="height" onchange={nodeheightChange}></lightning-input>
+                        <lightning-input type="number" name="height" label="Height" onchange={nodeheightChange}></lightning-input>
                     </lightning-layout-item>
                     </lightning-layout>
             </lightning-accordion-section>
@@ -33,19 +33,19 @@
 
             <lightning-layout multiple-rows>
                 <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
-           <lightning-input type="color" name="input-color" label="color" variant="label-stacked" value="#8DC141" onchange={edgecolorChange}></lightning-input>
+           <lightning-input type="color" name="input-color" label="Color" variant="label-stacked" value="#8DC141" onchange={edgecolorChange}></lightning-input>
                 </lightning-layout-item>
                 <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
-                    <lightning-combobox name="text-rotation" label="text-rotation" placeholder="Choose rotate"   options={textrotationoptions} onchange={handleChangetextrotate}></lightning-combobox>
+                    <lightning-combobox name="text-rotation" label="Text-rotation" placeholder="Choose rotate"   options={textrotationoptions} onchange={handleChangetextrotate}></lightning-combobox>
                 </lightning-layout-item>
                 <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small" >
-                    <lightning-input type="number" name="font" label="font size" onchange={edgefontsizeChange}></lightning-input>
+                    <lightning-input type="number" name="font" label="Font size" onchange={edgefontsizeChange}></lightning-input>
                 </lightning-layout-item>
                 <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
-                    <lightning-combobox name="curve style" label="curve style" placeholder="curve style"   options={curveoptions} onchange={handleChangecurve}></lightning-combobox>
+                    <lightning-combobox name="curve style" label="Curve style" placeholder="curve style"   options={curveoptions} onchange={handleChangecurve}></lightning-combobox>
                 </lightning-layout-item>
                 <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
-                    <lightning-input type="color" name="input-color" label="line color" variant="label-stacked" value="#8DC141" onchange={edgelinecolor}></lightning-input>
+                    <lightning-input type="color" name="input-color" label="Line color" variant="label-stacked" value="#8DC141" onchange={edgelinecolor}></lightning-input>
                 </lightning-layout-item>
                 
                 
@@ -58,7 +58,7 @@
                         <lightning-combobox name="Objects" label="Objects" placeholder="Choose Object"   options={Objectoptions} onchange={handleChangeObject} ></lightning-combobox>
                     </lightning-layout-item>
                     <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
-                        <lightning-combobox name="Relations" label="relations" placeholder="Choose Relation"   options={relationsoptions} onchange={handleChangeRelation} ></lightning-combobox>
+                        <lightning-combobox name="Relations" label="Relations" placeholder="Choose Relation"   options={relationsoptions} onchange={handleChangeRelation} ></lightning-combobox>
                     </lightning-layout-item>
                     <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
                         <lightning-combobox name="Parent relation" label="Parent relation" placeholder="Choose Parent Relation"   options={parentRelation} onchange={handleChangeparentrelation} ></lightning-combobox>

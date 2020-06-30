@@ -1,5 +1,6 @@
 public with sharing class SchemaCtrlMdt {
-    
+      
+  
     public class JData{
         @AuraEnabled public String Ident {get;set;}
         @AuraEnabled public SObject acc {get;set;}
@@ -35,7 +36,7 @@ public with sharing class SchemaCtrlMdt {
         @AuraEnabled public Decimal Fontsize  {get;set;} 
         @AuraEnabled public String edgeColor {get;set;}
         @AuraEnabled public String lineColor {get;set;}
-      
+        @AuraEnabled public String edgelist {get;set;}
         
         public JData2(Id source , Id target,String curvestyle,String textrotation,Decimal Fontsize,String edgeColor,String lineColor){
             this.source = source;
@@ -45,6 +46,7 @@ public with sharing class SchemaCtrlMdt {
             this.Fontsize = Fontsize;
             this.edgeColor = edgeColor;
             this.lineColor = lineColor;
+            this.edgelist  = '';
         }    
     }   
  
@@ -123,10 +125,16 @@ public with sharing class SchemaCtrlMdt {
 
         Set<Id> ids_level = new Set<Id>();
          
-       
+        /* debut */
+        String edgefiel = objsetting.edgefields__c;	
+        List<String> fieldedgelist = edgefiel.split(',');
+        String query1 = 'SELECT ';
+        for (String fieldName : fieldedgelist) {
+            query1 += fieldName+' ,';
+        }
        String ParentRelation = objsetting.Parent_Relation__c+'__c';
        String lookupRelation = objsetting.Lookup_relation__c+'__c';
-        String query1 = 'SELECT id, '+ ParentRelation + ' , ' + lookupRelation;
+        query1 +=  ParentRelation + ' , ' + lookupRelation;
        
         List<SObject> listeRelations;
         String relationName = objsetting.Relation_Name__c;
@@ -143,12 +151,19 @@ public with sharing class SchemaCtrlMdt {
                     
                      Wrapper childNode = new Wrapper('nodes', new JData(String.valueOf(relation.get(lookupRelation)),null,node.color__c,node.Background_fit__c,node.shape__c,node.Width__c,node.height__c,node.Font_size__c));
                      liste.add(childNode);
-                                                                
+                     String con = '';
+                     for(String a :fieldedgelist){
+                        String fieldedgevalue = a +' : '+ String.valueOf(relation.get(a))+'\n';
+                        con = con + fieldedgevalue + ',';
+                    }                                     
                      Wrapper wrpEdge = new Wrapper('edges', new Jdata2(String.valueOf(relation.get(ParentRelation)), String.valueOf(relation.get(lookupRelation)),edge.curvestyle__c,edge.textrotation__c,edge.Font_size__c,edge.color__c,edge.Linecolor__c));                    		 
+                     wrpEdge.data2.edgelist = con;
                      liste.add(wrpEdge);
                     
                      id_accounts.add(String.valueOf(relation.get(ParentRelation)));
                      id_accounts.add(String.valueOf(relation.get(lookupRelation)));
+
+
                 }
                 
         }
@@ -176,7 +191,8 @@ public with sharing class SchemaCtrlMdt {
                             if(wrp.dat.Ident == acc.id){ 
                                 wrp.dat.acc = acc;
                                 for(String a :fieldlist ){
-                                    con = con + String.valueOf(acc.get(a)) + ',';
+                                    String fieldvalue = a +' : '+ String.valueOf(acc.get(a));
+                                    con = con + fieldvalue + ',';
                                 }
                                 wrp.dat.acclist = con;
                             }
@@ -192,4 +208,12 @@ public with sharing class SchemaCtrlMdt {
         return mymap;
     }
         
+  
+    
+     
+
+
+     
+    
 }
+
