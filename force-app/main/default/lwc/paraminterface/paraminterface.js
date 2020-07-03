@@ -17,7 +17,7 @@ export default class Paraminterface extends LightningElement {
     @track Objectvalue ;
     @track Relationvalue ;
     @track textrotation ;
-
+    @track imageformula ;
     @track nodecolor;
     @track nodefontsize;
     @track nodewidth;
@@ -39,6 +39,8 @@ export default class Paraminterface extends LightningElement {
 
      @track parentrelationvalue;
      @track lookuprelationvalue;
+
+     @track fieldformulas = [];
        
     connectedCallback(){
         getAllObjects()
@@ -168,6 +170,21 @@ export default class Paraminterface extends LightningElement {
                 .catch(error => {
                     this.error = error;
                 }); 
+                getFieldsFormula({objectName : this.Objectvalue })
+                .then(data => {
+                    let formulafield = [];
+                    for(let key in data){
+                        formulafield.push({label : key,value : data[key]});
+                    }
+                     this.fieldformulas = formulafield;
+                })
+                .catch(error => {
+                    this.error = error;
+                }); 
+             }
+
+             handleChangeimage(event){
+                  this.imageformula = event.detail.value;
              }
 
              handleChangeparentrelation(event) {
@@ -262,7 +279,8 @@ export default class Paraminterface extends LightningElement {
                 nodesfields :   this._selectedfields,
                 edgefields : this._selectedlookup,
                 ParentRelation : this.parentrelationvalue,
-                Lookuprelation : this.lookuprelationvalue
+                Lookuprelation : this.lookuprelationvalue,
+                image : this.imageformula
             }),
             
          ])
@@ -280,7 +298,6 @@ export default class Paraminterface extends LightningElement {
             this.message = 'Error received: code'+error;
         });
     }
-
 
 
 }

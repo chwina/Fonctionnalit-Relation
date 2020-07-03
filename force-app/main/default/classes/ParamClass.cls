@@ -29,7 +29,7 @@ public with sharing class ParamClass {
     }
 
     @AuraEnabled
-    public static void updateObjectParamvalues(String Objectname, String RelationName,List<String> nodesfields,List<String> edgefields,String ParentRelation,String Lookuprelation) {
+    public static void updateObjectParamvalues(String Objectname, String RelationName,List<String> nodesfields,List<String> edgefields,String ParentRelation,String Lookuprelation,String image) {
        
         Object_param_setting__c objsetting = Object_param_setting__c.getOrgDefaults();
         if(Objectname != null) objsetting.Object_Name__c = Objectname;
@@ -38,7 +38,7 @@ public with sharing class ParamClass {
         if(edgefields.size() != 0) objsetting.edgefields__c = String.join(edgefields, ',');
         if(ParentRelation != null) objsetting.Parent_Relation__c = ParentRelation;
         if(Lookuprelation != null) objsetting.Lookup_relation__c = Lookuprelation;
-        
+        if(image != null) objsetting.formulaimage__c = image;
         
 
         upsert objsetting;
@@ -85,11 +85,8 @@ public with sharing class ParamClass {
         Schema.SObjectType convertType = Schema.getGlobalDescribe().get(objectName);
         Map<String, Schema.SobjectField> fmap = convertType.getDescribe().fields.getMap();
         for(String fieldName: fmap.keySet()){
-          
                 System.debug('lookup'+fmap.get(fieldName).getDescribe().getLabel()+' '+ fmap.get(fieldName).getDescribe().getType());
-                fieldsList.put(fmap.get(fieldName).getDescribe().getLabel(),fmap.get(fieldName).getDescribe().getName());
-                
-         
+                fieldsList.put(fmap.get(fieldName).getDescribe().getLabel(), fmap.get(fieldName).getDescribe().getName());
             
         }
         return fieldsList;
@@ -103,6 +100,22 @@ public with sharing class ParamClass {
             if(fmap.get(fieldName).getDescribe().getName().toLowerCase().right(3) ==  '__c' && fmap.get(fieldName).getDescribe().getType() == DisplayType.REFERENCE){
                 System.debug('lookup'+fmap.get(fieldName).getDescribe().getLabel()+' '+ fmap.get(fieldName).getDescribe().getType());
                 fieldsList.put(fieldName, fmap.get(fieldName).getDescribe().getLabel());
+                
+            }
+            
+        }
+        return fieldsList;
+    }
+    
+    @AuraEnabled(cacheable=true)
+    public static map<string, string> getFieldsFormula(String objectName){
+        map<string, string> fieldsList = new map<string, string>();
+        Schema.SObjectType convertType = Schema.getGlobalDescribe().get(objectName);
+        Map<String, Schema.SobjectField> fmap = convertType.getDescribe().fields.getMap();
+        for(String fieldName: fmap.keySet()){
+            if( fmap.get(fieldName).getDescribe().isCalculated() && fmap.get(fieldName).getDescribe().getType() == DisplayType.STRING){
+
+                fieldsList.put(fmap.get(fieldName).getDescribe().getLabel(), fmap.get(fieldName).getDescribe().getName());
                 
             }
             

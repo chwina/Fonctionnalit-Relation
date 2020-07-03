@@ -11,7 +11,7 @@ public with sharing class SchemaCtrlMdt {
         @AuraEnabled public Decimal width {get;set;} 
         @AuraEnabled public Decimal height {get;set;} 
         @AuraEnabled public Decimal Fontsize {get;set;}
-                   
+        @AuraEnabled public String formulaimage {get;set;}         
  
         public JData(String Ident, Account acc,String codeCouleur,String Backgroundfit,String shape,Decimal width,Decimal height,decimal Fontsize){
             this.Ident = Ident;
@@ -23,6 +23,7 @@ public with sharing class SchemaCtrlMdt {
             this.height = height;
             this.Fontsize = Fontsize;
             this.acclist = '';
+            this.formulaimage = '';
            
         } 
     }
@@ -125,7 +126,7 @@ public with sharing class SchemaCtrlMdt {
 
         Set<Id> ids_level = new Set<Id>();
          
-        
+        /* debut */
         String edgefiel = objsetting.edgefields__c;	
         List<String> fieldedgelist = edgefiel.split(',');
         String query1 = 'SELECT ';
@@ -171,9 +172,11 @@ public with sharing class SchemaCtrlMdt {
           
         
         
+        
         String fiel = objsetting.fields__c;	
+        String imagefield =  objsetting.formulaimage__c; 
         List<String> fieldlist = fiel.split(',');
-        String query = 'SELECT ';
+        String query = 'SELECT '+imagefield + ', ';
         for (String fieldName : fieldlist) {
             query += fieldName+' ,';
         }
@@ -181,15 +184,17 @@ public with sharing class SchemaCtrlMdt {
          query+=' FROM '+objectname+' WHERE id in :id_accounts';
         if(!id_accounts.isempty()){ 
         List<Sobject> accounts = Database.query(query);
-             
+            
             if(accounts.size()>0){ 
                 System.debug('accounts'+accounts);
                 for(Wrapper wrp : liste){  
                     for(SObject acc : accounts){   
+                        
                         String con = '';
                         if(wrp.dat!=null){
                             if(wrp.dat.Ident == acc.id){ 
                                 wrp.dat.acc = acc;
+                                wrp.dat.formulaimage = String.valueOf(acc.get(imagefield));
                                 for(String a :fieldlist ){
                                     String fieldvalue = a +' : '+ String.valueOf(acc.get(a));
                                     con = con + fieldvalue + ',';
@@ -201,7 +206,7 @@ public with sharing class SchemaCtrlMdt {
                 } 
             }
              
-       // } 
+       
         }
         Map<Set<Id>,List<Wrapper>> mymap = new Map<Set<Id>,List<Wrapper>>();
         mymap.put(ids_level,liste);

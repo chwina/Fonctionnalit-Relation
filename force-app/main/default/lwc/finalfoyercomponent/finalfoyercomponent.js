@@ -36,6 +36,7 @@ export default class Finalfoyercomponent extends LightningElement {
                     name: (this.foyers)[i].dat.acc.Name,
                     acc: (this.foyers)[i].dat.acc,
                     accList : (this.foyers)[i].dat.acclist,
+                    urlimage : (this.foyers)[i].dat.formulaimage,
                     codeCouleur : (this.foyers)[i].dat.codeCouleur,
                     Backgroundfit : (this.foyers)[i].dat.Backgroundfit,
                     shape : (this.foyers)[i].dat.shape,
@@ -158,22 +159,20 @@ export default class Finalfoyercomponent extends LightningElement {
         
         tpl(data){  
            
-            var acc2 = data.acc.Name;
-            var accUrl = data.acc.id;
+           var acc2 = data.acc.Name;
+           var accUrl = data.acc.id;
          
-           var label1 ='Conseillé: ';
-           var label2 ='Etat: ';
-           var info2 = 'test';
-           var urlImage = 'https://damienflandrin.fr/storage/tutoriel-realiser-une-carte-en-css/card-image.jpg';
+          
+           var urlImage = data.urlimage;
            var iddiv = data.id + 'myUl';
             return   '<article id="'+data.id+'" style="visibility: hidden; margin-left : -60px; cursor: pointer; position : relative;" class="slds-card slds-m-top_large slds-card_boundary"  >'+
             '<div class="slds-card__header slds-grid">'+
                 '<header class="slds-media slds-media_center slds-has-flexi-truncate">'+
-                    '<div class="slds-media__figure" style = "width : 60px; height : 65px;">'+
-                        '<img src="'+urlImage+'" />'+
+                    '<div class="slds-media__figure" style = "margin-top: -10px ;width : 40px; height : 45px;">'+
+                        '<img src="'+urlImage+'" alt="'+urlImage+'" />'+
                     '</div>'+
                     '<div class="slds-media__body" style = "margin-top : -30px;   width : 60px;">'+
-                        '<h2 class="slds-card__header-title" style = "font-size : 10px;text-align:center; margin-left :-10px;">'+
+                        '<h2 class="slds-card__header-title" style = "margin-top : 10px ;font-size : 10px;text-align:center; margin-left :-10px;">'+
                             '<a href="/'+accUrl+'">'+ 
                                 '<span style= "word-break: break-word;">'+acc2+'</span>'+
                             '</a>'+
@@ -181,7 +180,7 @@ export default class Finalfoyercomponent extends LightningElement {
                     '</div>'+
                 '</header>'+
             '</div>'+
-            '<div class="slds-card__body slds-card__body_inner" Style=" border-top-style: outset; text-align:center;padding: 10px 10px;font-weight: bold;box-sizing: border-box; margin-top : -30px;">'+
+            '<div class="slds-card__body slds-card__body_inner" Style=" border-top-style: outset; text-align:center;padding: 10px 10px;font-weight: bold;box-sizing: border-box; margin-top : -10px;">'+
                '<div id="'+iddiv+'"></div>'+
             '</div>'+
             
@@ -233,6 +232,7 @@ window.onscroll = function() {
      
 
     }
+  
   
 
       

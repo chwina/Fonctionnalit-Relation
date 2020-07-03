@@ -33,7 +33,7 @@
 
             <lightning-layout multiple-rows>
                 <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
-           <lightning-input type="color" name="input-color" label="Color" variant="label-stacked" value="#8DC141" onchange={edgecolorChange}></lightning-input>
+           <lightning-input type="color" name="input-color" label="Color" variant="label-stacked" value="" onchange={edgecolorChange}></lightning-input>
                 </lightning-layout-item>
                 <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
                     <lightning-combobox name="text-rotation" label="Text-rotation" placeholder="Choose rotate"   options={textrotationoptions} onchange={handleChangetextrotate}></lightning-combobox>
@@ -45,7 +45,7 @@
                     <lightning-combobox name="curve style" label="Curve style" placeholder="curve style"   options={curveoptions} onchange={handleChangecurve}></lightning-combobox>
                 </lightning-layout-item>
                 <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="2" padding="around-small">
-                    <lightning-input type="color" name="input-color" label="Line color" variant="label-stacked" value="#8DC141" onchange={edgelinecolor}></lightning-input>
+                    <lightning-input type="color" name="input-color" label="Line color" variant="label-stacked" value="" onchange={edgelinecolor}></lightning-input>
                 </lightning-layout-item>
                 
                 
@@ -71,21 +71,21 @@
             </lightning-accordion-section >
             <lightning-accordion-section class="slds-grid slds-grid--align-space" name="Affichage" label="Affichage">
                   <lightning-layout>
-                    <div class="slds-col--padded"></div>
-                    <div class="slds-col--padded"></div>
                     <lightning-layout-item class="slds-col--padded" size="12" small-device-size="6" medium-device-size="4" large-device-size="4" padding="around-small">
                         <lightning-dual-listbox name="fields" label="Select fields for Node" source-label="fields" selected-label="Selected fields" field-level-help="Select fields" options={fieldsoptions} onchange={handleChangefields}></lightning-dual-listbox>
                     </lightning-layout-item>
-                    <div class="slds-col--padded"></div>
-                    <div class="slds-col--padded"></div>
+                    
                     <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="4" padding="around-small">
                         <lightning-dual-listbox name="relation lookup" label="Select fields for Edge" source-label="fields" selected-label="Selectd fields" field-level-help="Select Relation lookup" options={relationfieldsoptions} onchange={handleChangelookup}></lightning-dual-listbox>
                     </lightning-layout-item>
-                  </lightning-layout>
-                  
                     
+                    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="4" padding="around-small" style="margin-top : 20px">
+                        <lightning-combobox name="image section" label="image section" placeholder="Choose image"   options={fieldformulas} onchange={handleChangeimage} ></lightning-combobox>
+                    </lightning-layout-item>
+                  </lightning-layout>
                  
-            </lightning-accordion-section>   
+                    
+                  </lightning-accordion-section>   
         </lightning-accordion>     
                 <lightning-layout>
                     <div class="slds-align_absolute-center">
