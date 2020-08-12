@@ -4,6 +4,7 @@ import { loadScript } from 'lightning/platformResourceLoader';
 import getData from '@salesforce/apex/SchemaCtrlMdt.getData'
 export default class Finalfoyercomponent extends LightningElement {
       
+    /* test gitworkflow */
     @track foyers;
     @track nombre;
     @api recordId;
